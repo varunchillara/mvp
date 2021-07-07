@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Hearts() {
+function Hearts (props) {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
@@ -37,6 +37,7 @@ function Hearts() {
         size="large"
         onChange={(event, newValue) => {
           setValue(newValue);
+          props.handleRatingChange(newValue);
         }}
         onChangeActive={(event, newHover) => {
           setHover(newHover);

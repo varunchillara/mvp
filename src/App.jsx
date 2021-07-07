@@ -21,6 +21,11 @@ const theme = createMuiTheme({
 });
 
 function App () {
+  const [marker, setMarker] = React.useState({});
+  const handleMarkerChange = (event) => {
+    setMarker(event.target.value);
+    console.log('was this handled???');
+  }
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
@@ -29,7 +34,7 @@ function App () {
           <div>
             <Title />
             <Form />
-            <Map />
+            <Map handleMarkerChange={handleMarkerChange}/>
           </div>
           <Info />
         </div>

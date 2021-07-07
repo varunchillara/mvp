@@ -18,22 +18,22 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-function Map () {
-  const [markers, setMarkers] = React.useState([]);
+const center = {
+  lat: 40.7831,
+  lng: -73.9712
+}
+const libraries = ['places'];
 
-  const classes = useStyle();
-  const libraries = ['places'];
+function Map (props) {
+  const [marker, setMarker] = React.useState({});
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: key,
     libraries
   })
+  const classes = useStyle();
   const mapContainerStyle = {
     width: '950px',
     height: '450px'
-  }
-  const center = {
-    lat: 40.7831,
-    lng: -73.9712
   }
 
   if (loadError) {
@@ -55,8 +55,10 @@ function Map () {
           styles: mapStyle,
           disableDefaultUI: true
         }}
-        onChange={(event) => {console.log('*******', event)}}
-        onClick={ (event) => {setMarkers({lat: event.latLng.lat(), lng: event.latLng.lng()});}}
+        onClick={ (event) => {
+          setMarker({lat: event.latLng.lat(), lng: event.latLng.lng()});
+          props.handleMarkerChange({lat: event.latLng.lat(), lng: event.latLng.lng()});
+        }}
         ></GoogleMap>
       </Paper>
     </div>
