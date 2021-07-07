@@ -11,7 +11,7 @@ const useStyle = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     '& > *': {
-      margin: theme.spacing(3),
+      margin: theme.spacing(0),
       width: theme.spacing(16),
       height: theme.spacing(16),
     },
@@ -28,8 +28,8 @@ function Map () {
     libraries
   })
   const mapContainerStyle = {
-    width: '70vw',
-    height: '65vh'
+    width: '950px',
+    height: '450px'
   }
   const center = {
     lat: 40.7831,
