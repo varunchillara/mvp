@@ -18,6 +18,17 @@
   width: 90%;
 }
 
+.search {
+  position: absolute;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.search input {
+  width: 150px;
+  height: 30px;
+}
+
 .form {
   margin-top: 10px;
   width: 950px;
@@ -36,4 +47,9 @@
 }
 .map {
   margin-left: 5px;
+}
+
+.solid {
+  width: 310px;
+  color: darkgray;
 }

@@ -5,6 +5,7 @@ import Form from './components/Form.jsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Title from './components/Title.jsx';
+import axios from 'axios';
 
 const theme = createMuiTheme({
   typography: {
@@ -21,10 +22,32 @@ const theme = createMuiTheme({
 });
 
 function App () {
-  const [marker, setMarker] = React.useState({});
-  const handleMarkerChange = (event) => {
-    setMarker(event.target.value);
-    console.log('was this handled???');
+  const [marker, setMarker] = React.useState({lat: 1, lng: 1, time: '1'});
+  const [markers, setMarkers] = React.useState([]);
+  const [category, setCategory] = React.useState('Food');
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  React.useEffect(() => {
+    if (markers.length === 0) {
+      axios.get('/entry')
+      .then((result) => {
+        setMarkers(result.data);
+      })
+    }
+  }, []);
+
+  const setMarkersOnSubmit = () => {
+    axios.get('/entry')
+    .then((result) => {
+      setMarkers(result.data);
+    })
+  }
+
+  const handleMarkerChange = (value) => {
+    setMarker(value);
   }
   return (
     <MuiThemeProvider theme={theme}>
@@ -33,10 +56,10 @@ function App () {
         <div className="main">
           <div>
             <Title />
-            <Form />
-            <Map handleMarkerChange={handleMarkerChange}/>
+            <Form marker={marker} setMarkersOnSubmit={setMarkersOnSubmit} category={category} handleCategoryChange={handleCategoryChange}/>
+            <Map category={category} marker={marker} handleMarkerChange={handleMarkerChange} markers={markers}/>
           </div>
-          <Info />
+          <Info markers={markers}/>
         </div>
       </div>
     </MuiThemeProvider>

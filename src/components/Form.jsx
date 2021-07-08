@@ -5,8 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Heart from './Hearts.jsx';
 import SubmitFormButton from './SubmitFormButton.jsx';
+import axios from 'axios';
 
-const categories = ['Food', 'Outdoor', 'Music', 'Misc'];
+const categories = ['Food', 'Outdoor', 'Music', 'Bars'];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,31 +37,32 @@ const useStyles = makeStyles(theme => ({
 
 function Form (props) {
   const [name, setName] = React.useState('');
-  const [category, setCategory] = React.useState('Food');
   const [review, setReview] = React.useState('');
   const [rating, setRating] = React.useState(2);
   const classes = useStyles();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-    // console.log(name);
-  };
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-    // console.log(category);
   };
   const handleReviewChange = (event) => {
     setReview(event.target.value);
-    // console.log('*** review!!', review);
   };
   const handleRatingChange = (value) => {
     setRating(value);
-    // console.log('*** rating', rating);
   };
 
   const handleFormSubmit = () => {
-    const formInformation = [name, category, review, rating];
-    console.log(formInformation);
+    const formInformation = ['varun', name, props.category, review, rating, props.marker.lat, props.marker.lng, 0];
+    axios.post('/entry', {array: formInformation})
+    .then(() => {
+      props.setMarkersOnSubmit();
+    })
+    .catch((error) => {
+      console.log('****', error);
+    })
+    setName('');
+    setReview('');
+    setRating(2);
   }
 
 
@@ -83,8 +85,8 @@ function Form (props) {
                   select
                   label="Select Category"
                   variant="outlined"
-                  value={category}
-                  onChange={handleCategoryChange}
+                  value={props.category}
+                  onChange={props.handleCategoryChange}
                 >
                 {categories.map((option) => (
                   <MenuItem key={option} value={option}>
