@@ -13,7 +13,7 @@ const categories = ['Food', 'Outdoor', 'Music', 'Bars'];
 const useStyles = makeStyles(theme => ({
   root: {
       '& .MuiTextField-root': {
-          margin: theme.spacing(1),
+          margin: theme.spacing(.97),
           width: '25ch'
       },
       '& label.Mui-focused': {
@@ -40,6 +40,7 @@ function Form (props) {
   const [name, setName] = React.useState('');
   const [review, setReview] = React.useState('');
   const [rating, setRating] = React.useState(2);
+  const [user, setUser] = React.useState('');
   const classes = useStyles();
 
   const handleNameChange = (event) => {
@@ -51,9 +52,12 @@ function Form (props) {
   const handleRatingChange = (value) => {
     setRating(value);
   };
+  const handleUserChange = (event) => {
+    setUser(event.target.value);
+  }
 
   const handleFormSubmit = () => {
-    const formInformation = ['varun', name, props.category, review, rating, props.marker.lat, props.marker.lng, 0];
+    const formInformation = [user, name, props.category, review, rating, props.marker.lat, props.marker.lng, 0];
     axios.post('/entry', {array: formInformation})
     .then(() => {
       props.setMarkersOnSubmit();
@@ -75,7 +79,17 @@ function Form (props) {
             <div className="nameAndCategory">
               <div>
                 <TextField
+                  id="user"
+                  size="small"
+                  label="User"
+                  variant="outlined"
+                  onChange={handleUserChange}
+                />
+              </div>
+              <div>
+                <TextField
                   id="name"
+                  size="small"
                   label="Name"
                   variant="outlined"
                   onChange={handleNameChange}
@@ -83,6 +97,7 @@ function Form (props) {
               </div>
               <div>
                 <TextField
+                  size="small"
                   id="category"
                   select
                   label="Select Category"
@@ -104,7 +119,7 @@ function Form (props) {
               variant="outlined"
               label="Toughts On Location"
               multiline
-              rows={5}
+              rows={6}
               style = {{width: 470}}
               onChange={handleReviewChange}
               />

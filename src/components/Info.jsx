@@ -24,7 +24,7 @@ function Info (props) {
   return (
     <div className="info" >
       <Paper className={classes.root} elevation={1} style={{ backgroundColor: 'rgb(250, 250, 250)' }}>
-      <List className={classes.root} style={{maxHeight: '695px', overflow: 'auto'}}>
+      <List className={classes.root} style={{maxHeight: '712px', overflow: 'auto'}}>
       {props.markers.map((marker, i) => {
         return (
           <div key={i} >
