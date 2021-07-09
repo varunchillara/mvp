@@ -14,20 +14,17 @@ app.use(express.urlencoded({extended:false}));
 
 app.get('/entry', async (req, res) => {
   try {
-    const params = req.params;
-
+    const category = req.query.category;
     let query = 'SELECT * FROM ENTRY ORDER BY Id DESC';
-
-    if (req.params === 'Food') {
-      query = 'SELECT * FROM ENTRY WHERE CATEGORY=food ORDER BY Id DESC';
-    } else if (req.params === 'Outdoor') {
-      query = 'SELECT * FROM ENTRY WHERE CATEGORY=outdoor ORDER BY Id DESC';
-    } else if (req.params === 'Music') {
-      query = 'SELECT * FROM ENTRY WHERE CATEGORY=music ORDER BY Id DESC';
-    } else if (req.params === 'Bars') {
-      query = 'SELECT * FROM ENTRY WHERE CATEGORY=bars ORDER BY Id DESC';
+    if (category === 'Food') {
+      query = "SELECT * FROM ENTRY WHERE CATEGORY='Food' ORDER BY Id DESC";
+    } else if (category === 'Outdoor') {
+      query = "SELECT * FROM ENTRY WHERE CATEGORY='outdoor' ORDER BY Id DESC";
+    } else if (category === 'Music') {
+      query = "SELECT * FROM ENTRY WHERE CATEGORY='music' ORDER BY Id DESC";
+    } else if (category === 'Bars') {
+      query = "SELECT * FROM ENTRY WHERE CATEGORY='bars' ORDER BY Id DESC";
     }
-
     const [rows] = await db.getAllEntrys(query);
     res.statusCode = 200;
     res.send(rows);
