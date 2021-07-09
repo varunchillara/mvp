@@ -16,6 +16,7 @@
   display: flex;
   margin: auto;
   width: 90%;
+  font-family: 'Archivo';
 }
 
 .search {
@@ -33,23 +34,25 @@
   margin-top: 10px;
   width: 950px;
   height: 150px;
-  background-color: rgb(240, 240, 240);
   margin-bottom: 20px;
   display: flex;
 }
 
 .info {
   margin-top: 20px;
-  width: 500px;
   height: 695px;
-  background-color: rgb(238, 238, 238);
   margin-left: 20px;
 }
 .map {
-  margin-left: 5px;
+  width: '950px';
+  height: '450px';
 }
 
 .solid {
-  width: 310px;
+  width: 290px;
   color: darkgray;
+}
+
+.sort {
+  margin-left: 'auto';
 }

@@ -12,6 +12,10 @@ module.exports.addAEntry = (array) => {
   return pool.query('INSERT INTO ENTRY (user, name, category, summary, rating, lat, lng, helpfullness, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', array);
 }
 
-module.exports.getAllEntrys = () => {
-  return pool.query('SELECT * FROM ENTRY');
+module.exports.getAllEntrys = (query) => {
+  return pool.query(query);
+}
+
+module.exports.getFilteredEntrys = (category) => {
+  return pool.query(`SELECT * FROM ENTRY WHERE CATEGORY=${category} ORDER BY Id DESC`);
 }

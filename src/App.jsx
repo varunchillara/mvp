@@ -6,10 +6,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Title from './components/Title.jsx';
 import axios from 'axios';
+import Sort from './components/Sort.jsx';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: ['Roboto'],
+    fontFamily: ['Archivo', 'sans-serif'],
   },
   palette: {
     primary: {
@@ -55,7 +56,10 @@ function App () {
       <div className="container">
         <div className="main">
           <div>
-            <Title />
+            <div style={{display:"flex"}}>
+              <Title />
+              <Sort />
+            </div>
             <Form marker={marker} setMarkersOnSubmit={setMarkersOnSubmit} category={category} handleCategoryChange={handleCategoryChange}/>
             <Map category={category} marker={marker} handleMarkerChange={handleMarkerChange} markers={markers}/>
           </div>

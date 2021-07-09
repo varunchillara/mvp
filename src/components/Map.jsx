@@ -74,8 +74,8 @@ function Map ({marker, markers, handleMarkerChange, category}) {
 
   // console.log(console.log('*******', marker.category));
   return (
-    <div>
-      <Paper className={classes.root} elevation={5}>
+    <div className="map">
+      <Paper className={classes.root} elevation={1}>
         <GoogleMap
         className="map"
         mapContainerStyle={mapContainerStyle}

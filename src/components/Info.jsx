@@ -5,9 +5,9 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import StaticHearts from './StaticHearts.jsx';
+import { Paper } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
 function Info (props) {
   const classes = useStyles();
   return (
-    <div className="info">
-      <List className={classes.root}>
+    <div className="info" >
+      <Paper className={classes.root} elevation={1} style={{ backgroundColor: 'rgb(250, 250, 250)' }}>
+      <List className={classes.root} style={{maxHeight: '695px', overflow: 'auto'}}>
       {props.markers.map((marker, i) => {
         return (
-          <React.Fragment key={i}>
-          <ListItem alignItems="flex-start">
+          <div key={i} >
+          <ListItem alignItems="flex-start" >
             <ListItemText
             primary={marker.name}
             secondary={
@@ -45,11 +46,13 @@ function Info (props) {
               }/>
         </ListItem>
         <hr className="solid" />
-        </React.Fragment>
+        </div>
         )
       })}
       </List>
+      </Paper>
     </div>
+
   )
 }
 

@@ -7,6 +7,7 @@ import Heart from './Hearts.jsx';
 import SubmitFormButton from './SubmitFormButton.jsx';
 import axios from 'axios';
 
+
 const categories = ['Food', 'Outdoor', 'Music', 'Bars'];
 
 const useStyles = makeStyles(theme => ({
@@ -68,6 +69,7 @@ function Form (props) {
 
   return (
       <React.Fragment>
+         <Paper className={classes.root} elevation={1} style={{ backgroundColor: 'rgb(250, 250, 250)' }}>
         <form className={classes.root} noValidate autoComplete="off">
           <div className="form">
             <div className="nameAndCategory">
@@ -113,6 +115,7 @@ function Form (props) {
             </div>
           </div>
         </form>
+        </Paper>
       </React.Fragment>
   )
 }
