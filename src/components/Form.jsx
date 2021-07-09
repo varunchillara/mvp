@@ -67,6 +67,7 @@ function Form (props) {
     })
     setName('');
     setReview('');
+    setUser('');
     setRating(2);
   }
 
@@ -83,6 +84,7 @@ function Form (props) {
                   size="small"
                   label="User"
                   variant="outlined"
+                  value={user}
                   onChange={handleUserChange}
                 />
               </div>
@@ -90,8 +92,9 @@ function Form (props) {
                 <TextField
                   id="name"
                   size="small"
-                  label="Name"
+                  label="Location"
                   variant="outlined"
+                  value={name}
                   onChange={handleNameChange}
                 />
               </div>
@@ -120,6 +123,7 @@ function Form (props) {
               label="Toughts On Location"
               multiline
               rows={6}
+              value = {review}
               style = {{width: 470}}
               onChange={handleReviewChange}
               />
