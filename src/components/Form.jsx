@@ -69,6 +69,7 @@ function Form (props) {
     setReview('');
     setUser('');
     setRating(2);
+    props.handleMarkerChange({lat: 1, lng: 1, time: '1'});
   }
 
 

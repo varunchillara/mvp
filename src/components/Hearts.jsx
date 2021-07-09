@@ -30,7 +30,7 @@ function Hearts (props) {
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div style = {{marginTop: "5px"}} className={classes.root}>
       <Rating
         name="hover-feedback"
         value={value}

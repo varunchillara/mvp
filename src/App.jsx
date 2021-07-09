@@ -72,7 +72,7 @@ function App () {
               <Title />
               <Sort handleFilterChange={handleFilterChange}/>
             </div>
-            <Form marker={marker} setMarkersOnSubmit={setMarkersOnSubmit} category={category} handleCategoryChange={handleCategoryChange}/>
+            <Form handleMarkerChange={handleMarkerChange} marker={marker} setMarkersOnSubmit={setMarkersOnSubmit} category={category} handleCategoryChange={handleCategoryChange}/>
             <Map category={category} marker={marker} handleMarkerChange={handleMarkerChange} markers={markers}/>
           </div>
           <Info markers={markers}/>
