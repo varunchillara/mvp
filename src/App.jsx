@@ -26,14 +26,26 @@ function App () {
   const [marker, setMarker] = React.useState({lat: 1, lng: 1, time: '1'});
   const [markers, setMarkers] = React.useState([]);
   const [category, setCategory] = React.useState('Food');
+  const [filter, setFilter] = React.useState('All');
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
 
+  const handleFilterChange = (value) => {
+    setFilter(value);
+  }
+
+  React.useEffect(() => {
+    axios.get(`/entry?category=${filter}`)
+    .then((result) => {
+      setMarkers(result.data);
+    })
+  }, [filter])
+
   React.useEffect(() => {
     if (markers.length === 0) {
-      axios.get('/entry')
+      axios.get(`/entry?category=${filter}`)
       .then((result) => {
         setMarkers(result.data);
       })
@@ -41,7 +53,7 @@ function App () {
   }, []);
 
   const setMarkersOnSubmit = () => {
-    axios.get('/entry')
+    axios.get(`/entry?category=${filter}`)
     .then((result) => {
       setMarkers(result.data);
     })
@@ -58,7 +70,7 @@ function App () {
           <div>
             <div style={{display:"flex"}}>
               <Title />
-              <Sort />
+              <Sort handleFilterChange={handleFilterChange}/>
             </div>
             <Form marker={marker} setMarkersOnSubmit={setMarkersOnSubmit} category={category} handleCategoryChange={handleCategoryChange}/>
             <Map category={category} marker={marker} handleMarkerChange={handleMarkerChange} markers={markers}/>

@@ -15,24 +15,24 @@ function Sort (props) {
           </Button>
           <Menu {...bindMenu(popupState)}>
             <MenuItem onClick={ () => {
+              props.handleFilterChange('All');
               popupState.close();
-              console.log('clicked all');
             }}>All</MenuItem>
             <MenuItem onClick={ () => {
+              props.handleFilterChange('Food');
               popupState.close();
-              console.log('Food');
             }}>Food</MenuItem>
             <MenuItem onClick={ () => {
+              props.handleFilterChange('Outdoor');
               popupState.close();
-              console.log('Outdoor');
             }}>Outdoor</MenuItem>
             <MenuItem onClick={ () => {
+              props.handleFilterChange('Music');
               popupState.close();
-              console.log('Music');
             }}>Music</MenuItem>
             <MenuItem onClick={ () => {
+              props.handleFilterChange('Bars');
               popupState.close();
-              console.log('Bars');
             }}>Bars</MenuItem>
           </Menu>
         </React.Fragment>
